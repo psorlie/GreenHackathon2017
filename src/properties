@@ -1,0 +1,4 @@
+database=dentist
+host_bdd=localhost
+user=userDentist
+pass=networkDentist
