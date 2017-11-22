@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,52 +15,64 @@
 </head>
 <body>
 
+	<div class="container text-left">
+		<h1>Annuaire dentiste</h1>
 
-	<h1>Annuaire dentiste</h1>
+		<form class="form-horizontal" action="RechercheDentisteServlet"
+			method="post">
 
-	<form class="form-horizontal" action="RechercheDentisteServlet"
-		method="post">
-		<div class="form-group">
-
-			<div class="row">
-				<label class="control-label col-xs-2" for="">Nom :</label> <input
+			<div class="form-group">
+				<label class="control-label col-xs-1" for="">Nom :</label> <input
 					type="text" id="nom" name="nom" class="control-label col-xs-2" />
 			</div>
 
-			<div class="row">
-				<label class="control-label col-xs-2" for="">Ville :</label> <input
+			<div class="form-group">
+				<label class="control-label col-xs-1" for="">Ville :</label> <input
 					type="text" id="ville" name="ville" class="control-label col-xs-2" />
 			</div>
 
-			<div class="row">
-				<label class="control-label col-xs-2" for="">Jour :</label>
-			</div>
-			<div class="row">
-
-				<div class="checkbox">
-					<label class="control-label col-xs-2 col-xs-offset-1"><input
-						type="checkbox" checked value="1">Lundi</label>
-				</div>
-				<div class="checkbox">
-					<label class="control-label col-xs-2 col-xs-offset-1"><input
-						type="checkbox" checked value="2">Mardi</label>
-				</div>
-				<div class="checkbox">
-					<label class="control-label col-xs-2 col-xs-offset-1"><input
-						type="checkbox" checked value="3">Mercredi</label>
-				</div>
-				<div class="checkbox">
-					<label class="control-label col-xs-2 col-xs-offset-1"><input
-						type="checkbox" checked value="4">Jeudi</label>
-				</div>
-				<div class="checkbox">
-					<label class="control-label col-xs-2 col-xs-offset-1"><input
-						type="checkbox" checked value="5">Vendredi</label>
-				</div>
+			<div class="form-group">
+				<label class="control-label col-xs-1" for="">Jour :</label>
 			</div>
 
-			<div class="row">
-				<label class="control-label col-xs-2" for="">Horaire début :</label>
+			<div class="form-group">
+				<div class="form-check">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="checkbox">Lundi
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-check">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="checkbox">Mardi
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-check">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="checkbox">Mercredi
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-check">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="checkbox">Jeudi
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-check">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="checkbox">Vendredi
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-xs-1" for="">Horaire dÃ©but :</label>
 				<select name="horaire_debut" id="horraires"
 					class="control-label col-xs-2">
 					<option value="6">6:00</option>
@@ -80,8 +92,8 @@
 				</select>
 			</div>
 
-			<div class="row">
-				<label class="control-label col-xs-2" for="">Horaire fin :</label> <select
+			<div class="form-group">
+				<label class="control-label col-xs-1" for="">Horaire fin :</label> <select
 					name="horaire_fin" id="horraires" class="control-label col-xs-2">
 					<option value="6">6:00</option>
 					<option value="7">7:00</option>
@@ -100,8 +112,8 @@
 				</select>
 			</div>
 
-			<div class="row">
-				<label class="control-label col-xs-2" for="">Specialite :</label> <select
+			<div class="form-group">
+				<label class="control-label col-xs-1" for="">Specialite :</label> <select
 					name="horaires" id="horraires" class="control-label col-xs-2">
 					<option value="1">a</option>
 					<option value="2">b</option>
@@ -109,7 +121,7 @@
 					<option value="4">d</option>
 				</select>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </body>
 </html>
