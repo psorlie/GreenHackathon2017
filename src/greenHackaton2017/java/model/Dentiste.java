@@ -19,6 +19,10 @@ public class Dentiste {
 	private String email;
 	private Long phone;
 	
+	public Dentiste(){
+		
+	}
+	
 	public Dentiste(String firstName, String surname, String speciality, Day[] openingHours,
 			String photo, String city, String address, boolean gender, String email, Long phone) {
 		this.firstName = firstName;
