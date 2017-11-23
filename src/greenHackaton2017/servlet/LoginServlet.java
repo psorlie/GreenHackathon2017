@@ -45,11 +45,10 @@ public class LoginServlet extends HttpServlet {
 			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT password FROM Users WHERE login='" + login + "'");
 
 			if (resultat.next() && resultat.getString(1).equals(password)) {
-				session.setAttribute("login", login);
+				session.setAttribute("utilisateur", new User(login, password));
 				dispatcher = request.getRequestDispatcher("accueil.jsp");
 			}
 
-			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			System.out.println("erf");
 		}

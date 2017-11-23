@@ -41,40 +41,35 @@ public class ResultatsRecherche extends HttpServlet {
 			response.sendRedirect("index.jsp?connexion=false");
 		} else {
 			
-			User user = (User)session.getAttribute("user");
+			User user = (User)session.getAttribute("utilisateur");
 			
 			Day[] semaine = new Day[5];
 			int horaireDebut = Integer.parseInt( request.getParameter("horaire_debut") );
 			int horaireFin = Integer.parseInt( request.getParameter("horaire_fin") );
 			if (request.getParameter("lundi") != null) {
-				semaine[0].setOpening(horaireDebut);
-				semaine[0].setClosing(horaireFin);
+				semaine[0] = new Day(horaireDebut,horaireFin);
 			} else {
-				semaine[0] = null;
+				semaine[0] = new Day(null,null);
 			}
 			if (request.getParameter("mardi") != null) {
-				semaine[1].setOpening(horaireDebut);
-				semaine[1].setClosing(horaireFin);
+				semaine[1] = new Day(horaireDebut,horaireFin);
 			} else {
-				semaine[1] = null;
+				semaine[1] = new Day(null,null);
 			}
 			if (request.getParameter("mercredi") != null) {
-				semaine[2].setOpening(horaireDebut);
-				semaine[2].setClosing(horaireFin);
+				semaine[2] = new Day(horaireDebut,horaireFin);
 			} else {
-				semaine[2] = null;
+				semaine[2] = new Day(null,null);
 			}
 			if (request.getParameter("jeudi") != null) {
-				semaine[3].setOpening(horaireDebut);
-				semaine[3].setClosing(horaireFin);
+				semaine[3] = new Day(horaireDebut,horaireFin);
 			} else {
-				semaine[3] = null;
+				semaine[3] = new Day(null,null);
 			}
 			if (request.getParameter("vendredi") != null) {
-				semaine[4].setOpening(horaireDebut);
-				semaine[4].setClosing(horaireFin);
+				semaine[4] = new Day(horaireDebut,horaireFin);
 			} else {
-				semaine[4] = null;
+				semaine[4] = new Day(null,null);
 			}
 			
 			
@@ -82,7 +77,7 @@ public class ResultatsRecherche extends HttpServlet {
 			dentiste.setSurname(request.getParameter("nom"));
 			dentiste.setCity(request.getParameter("ville"));
 			dentiste.setOpeningHours(semaine);
-			dentiste.setSpeciality(request.getParameter("speciality"));
+			dentiste.setSpeciality(request.getParameter("specialite"));
 			Dentiste[] dentistes = null;
 			try {
 				dentistes = ( new DentisteDAO() ).trouverDentistes(dentiste);
@@ -90,8 +85,9 @@ public class ResultatsRecherche extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			session.setAttribute("resultats", dentistes);
-			
+			user.setDentistesConsultes(dentistes);
+			session.setAttribute("utilisateur", user);
+
 			RequestDispatcher dispat = request.getRequestDispatcher("resultatsRecherche.jsp");
 			dispat.forward(request, response);
 		}

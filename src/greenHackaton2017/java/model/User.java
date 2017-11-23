@@ -3,6 +3,7 @@ package greenHackaton2017.java.model;
 public class User {
 	private String login;
 	private String password;
+	private Dentiste[] dentistesConsultes;
 	
 	public User(){
 		
@@ -27,6 +28,14 @@ public class User {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Dentiste[] getDentistesConsultes() {
+		return dentistesConsultes;
+	}
+
+	public void setDentistesConsultes(Dentiste[] dentistesConsultes) {
+		this.dentistesConsultes = dentistesConsultes;
 	}
 
 }

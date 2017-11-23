@@ -5,9 +5,9 @@
 <%@ page import="greenHackaton2017.java.model.User" %>
 <%@ page import="greenHackaton2017.java.model.Dentiste" %>
 
-<% 	User userCourant = (User) request.getSession().getAttribute("user");
-	int nbResultats = (int) request.getSession().getAttribute("nbResultats");
-	Dentiste[] dentistes = (Dentiste[]) request.getSession().getAttribute("resultats");
+<% 	User userCourant = (User) request.getSession().getAttribute("utilisateur");
+	Dentiste[] dentistes = userCourant.getDentistesConsultes();
+	int nbResultats = dentistes.length;
 %>
 
 <jsp:include page="verifSession.jsp" />
