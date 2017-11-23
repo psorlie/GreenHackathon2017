@@ -14,13 +14,13 @@
 				<form action="LoginServlet" method="get">
 					<div class="form-group">
 						<label for="login">Identifiant</label> <input
-							class="form-control" id="login" type="text"
+							class="form-control" id="login" name = "login" type="text"
 							aria-describedby="loginHelp"
 							placeholder="Enter identifiant">
 					</div>
 					<div class="form-group">
 						<label for="password">Mot de passe</label> <input class="form-control"
-							id="mdp" type="password" placeholder="Entrer mot de passe">
+							id="password" name = "password" type="password" placeholder="Entrer mot de passe">
 					</div>
 					<button type="submit" class="btn  btn-primary btn-block">Login</button>
 				</form>

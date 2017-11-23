@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bdd.ConnexionBDD;
+import greenHackaton2017.java.model.User;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -34,26 +35,26 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher;
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String login = (String) request.getAttribute("login");
-		String password = (String) request.getAttribute("password");
+		String login = (String) request.getParameter("login");
+		String password = (String) request.getParameter("password");
 
 		ResultSet resultat;
 		try {
-			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT password, id FROM Users WHERE login='" + login + "'");
+			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT password FROM Users WHERE login='" + login + "'");
 
-			if (resultat.getString("password").equals(password)) {
-				int id = resultat.getInt("id");
-				session.setAttribute("id", id);
+			if (resultat.next() && resultat.getString(1).equals(password)) {
+				session.setAttribute("login", login);
 				dispatcher = request.getRequestDispatcher("accueil.jsp");
-			} else {
-				dispatcher = request.getRequestDispatcher("login.jsp");
 			}
 
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
+			System.out.println("erf");
 		}
+
+		dispatcher.forward(request, response);
 
 	}
 }

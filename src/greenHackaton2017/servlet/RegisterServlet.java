@@ -38,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
 		String confirmPassword = (String) request.getParameter("confirmPassword");
 		HttpSession session = request.getSession();
 
-		RequestDispatcher dispatcher = null;
+		RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
 		ResultSet resultat;
 
 		try {
@@ -46,13 +46,9 @@ public class RegisterServlet extends HttpServlet {
 			if (!resultat.next() && password.equals(confirmPassword) && !password.equals("")) {
 				ConnexionBDD.getConnexion().insertIntoDataBase(
 						"insert into Users(login, password) VALUES('" + login + "','" + password + "')");
-				resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
-				resultat.next();
-				int id = resultat.getInt("id");
-				session.setAttribute("id", id);
+				
+				session.setAttribute("login", login);
 				dispatcher = request.getRequestDispatcher("accueil.jsp");
-			} else {
-				dispatcher = request.getRequestDispatcher("register.jsp");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
