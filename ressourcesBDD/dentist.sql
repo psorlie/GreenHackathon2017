@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 23 Novembre 2017 à 13:02
+-- Généré le :  Jeu 23 Novembre 2017 à 13:17
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -2113,20 +2113,6 @@ CREATE TABLE `users` (
   `login` varchar(25) DEFAULT NULL,
   `password` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
-
---
--- Contenu de la table `users`
---
-
-INSERT INTO `users` (`id`, `login`, `password`) VALUES
-(2, 'chaillou', 'network'),
-(3, 'begnaud', 'test'),
-(4, 'test', 't'),
-(5, 'test2', ''),
-(6, 'test3', 'test'),
-(7, 'test4', 'test'),
-(8, 'test5', 'yolo'),
-(9, 'chaillcl', 'network');
 
 --
 -- Index pour les tables exportées
