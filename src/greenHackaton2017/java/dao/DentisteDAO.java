@@ -15,9 +15,9 @@ public class DentisteDAO {
 		String firstName = dentiste.getFirstName();
 		String lastName = dentiste.getSurname();
 		String email = dentiste.getEmail();
-		boolean gender = dentiste.isGender();
+		boolean gender = dentiste.isFemale();
 		String speciality = dentiste.getSpeciality();
-		String adress = dentiste.getAdresse();
+		String adress = dentiste.getAddress();
 		String city = dentiste.getCity();
 		String phone = dentiste.getPhoto();
 		Integer lundiOuverture = dentiste.getOpeningHours()[0].getOpening();
@@ -71,24 +71,18 @@ public class DentisteDAO {
 	 * ResultSet) et un bean Utilisateur.
 	 */
 	private static Dentiste map(ResultSet result) throws SQLException {
-		Dentiste dentiste = new Dentiste();
-		dentiste.setFirstName(result.getString("first_name"));
-		dentiste.setSurname(result.getString("last_name"));
-		dentiste.setEmail(result.getString("email"));
-		dentiste.setGender(result.getBoolean("gender"));
-		dentiste.setSpeciality(result.getString("speciality"));
-		dentiste.setCity(result.getString("city"));
-		dentiste.setAdresse(result.getString("adresse"));
-		dentiste.setPhone(result.getLong("phone"));
-
+		
 		Day[] days = { new Day(result.getInt("lundiOuverture"), result.getInt("lundiFermeture")),
 				new Day(result.getInt("mardiOuverture"), result.getInt("mardiFermeture")),
 				new Day(result.getInt("mercrediOuverture"), result.getInt("mercrediFermeture")),
 				new Day(result.getInt("jeudiOuverture"), result.getInt("jeudiFermeture")),
 				new Day(result.getInt("vendrediOuverture"), result.getInt("vendrediFermeture")) };
-		dentiste.setOpeningHours(days);
-		dentiste.setPhoto(result.getString("image"));
-
-		return dentiste;
+		
+		return new Dentiste(
+				result.getString("first_name"), result.getString("last_name"),
+				result.getString("speciality"), days,
+				result.getString("image"), result.getString("city"), 
+				result.getString("adresse"), result.getBoolean("gender"),
+				result.getString("email"), result.getLong("phone"));
 	}
 }

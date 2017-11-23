@@ -14,10 +14,24 @@ public class Dentiste {
 	private Day[] openingHours;
 	private String photo;
 	private String city;
-	private String adresse;
+	private String address;
 	private boolean gender;
 	private String email;
 	private Long phone;
+	
+	public Dentiste(String firstName, String surname, String speciality, Day[] openingHours,
+			String photo, String city, String address, boolean gender, String email, Long phone) {
+		this.firstName = firstName;
+		this.surname = surname;
+		this.speciality = speciality;
+		this.openingHours = openingHours;
+		this.photo = photo;
+		this.city = city;
+		this.address = address;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+	}
 	
 	/*************************
 	 ******** Getter *********
@@ -41,6 +55,26 @@ public class Dentiste {
 	
 	public String getPhoto() {
 		return this.photo;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+
+	public boolean isFemale() {
+		return this.gender;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public Long getPhone() {
+		return this.phone;
 	}
 	
 	/*************************
@@ -67,45 +101,23 @@ public class Dentiste {
 		this.photo = photo;
 	}
 
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adress) {
-		this.adresse = adress;
-	}
-
-	public String getCity() {
-		return city;
+	public void setAdress(String address) {
+		this.address = address;
 	}
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public boolean isGender() {
-		return gender;
-	}
-
-	public void setGender(boolean gender) {
-		this.gender = gender;
-	}
-
-	public String getEmail() {
-		return email;
+	public void setFemale(boolean isFemale) {
+		this.gender = isFemale;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Long getPhone() {
-		return phone;
-	}
-
+	
 	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
-
-	
 }
