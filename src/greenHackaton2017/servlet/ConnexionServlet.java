@@ -1,6 +1,7 @@
 package greenHackaton2017.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Connexion
  */
-@WebServlet(description = "Servlet appelé pour une connexion d'un utilisateur enregistré", urlPatterns = { "/Connexion" })
-public class Connexion extends HttpServlet {
+@WebServlet(description = "Servlet appelï¿½ pour une connexion d'un utilisateur enregistrï¿½", urlPatterns = { "/ConnexionServlet" })
+public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Connexion() {
+    public ConnexionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,8 +26,16 @@ public class Connexion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String identifiant = (String) request.getAttribute("identifiant");
+		String mdp = (String) request.getAttribute("mdp");
+		
+		
+	
 	}
+	
+//	TABLE : USers
+//	login
+//  password
 
 }

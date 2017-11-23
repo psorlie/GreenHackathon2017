@@ -11,7 +11,7 @@
 		<div class="card card-login mx-auto mt-5">
 			<div class="card-header">Login</div>
 			<div class="card-body">
-				<form action="LoginServlet" method="service">
+				<form action="LoginServlet" method="get">
 					<div class="form-group">
 						<label for="login">Identifiant</label> <input
 							class="form-control" id="login" type="text"
@@ -25,7 +25,7 @@
 					<button type="submit" class="btn  btn-primary btn-block">Login</button>
 				</form>
 				<div class="text-center">
-					<a class="d-block small mt-3" href="register.html">Register an
+					<a class="d-block small mt-3" href="register.jsp">Register an
 						Account</a>
 				</div>
 			</div>
