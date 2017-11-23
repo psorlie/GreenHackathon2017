@@ -61,19 +61,19 @@
 							</tr>
 							<tr>
 								<th>Ouverture</th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
+								<th><%=dentiste.getOpeningHours()[0].getOpening()%></th>
+								<th><%=dentiste.getOpeningHours()[1].getOpening()%></th>
+								<th><%=dentiste.getOpeningHours()[2].getOpening()%></th>
+								<th><%=dentiste.getOpeningHours()[3].getOpening()%></th>
+								<th><%=dentiste.getOpeningHours()[4].getOpening()%></th>
 							</tr>
 							<tr>
 								<th>Fermeture</th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
+								<th><%=dentiste.getOpeningHours()[0].getClosing()%></th>
+								<th><%=dentiste.getOpeningHours()[1].getClosing()%></th>
+								<th><%=dentiste.getOpeningHours()[2].getClosing()%></th>
+								<th><%=dentiste.getOpeningHours()[3].getClosing()%></th>
+								<th><%=dentiste.getOpeningHours()[4].getClosing()%></th>
 							</tr>
 						</table>
 					</div>
