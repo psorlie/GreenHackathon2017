@@ -31,13 +31,13 @@
 				<div class="form-inline">
 					<div class="form-group col-lg-3">
 						<div class="form-group">
-							<label>image</label>
+							<img src="<%=dentiste.getPhoto()%>">
 						</div>
 					</div>
 					<div class="form-group col-lg-3 offset-lg-2">
 						<div class="form-horizontal">
 							<div class="form-group">
-								<label><%=(dentiste.isFemale()?"Mrs ":"Mr. ") + dentiste.getSurname() + " " + dentiste.getFirstName()%></label>
+								<label><%=(dentiste.isFemale() ? "Mrs " : "Mr. ") + dentiste.getSurname() + " " + dentiste.getFirstName()%></label>
 							</div>
 							<div class="form-group">
 								<label><%=dentiste.getSpeciality()%>></label>
@@ -96,7 +96,7 @@
 						<label><%=dentiste.getPhone()%></label>
 					</div>
 					<div class="form-group col-lg-6">
-						
+
 						<label><%=dentiste.getEmail()%></label>
 					</div>
 				</div>
