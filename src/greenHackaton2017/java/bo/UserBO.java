@@ -18,12 +18,13 @@ public class UserBO {
 	}
 	
 	public User getUser(String login, String password) throws SQLException {
+		
 		User possibleUser = userDAO.getUser(login);
-		if(possibleUser.getPassword().equals(password)) {
-			return possibleUser;
-		} else {
-			return null;
+		
+		if(!(possibleUser.getPassword().equals(password))) {
+			possibleUser = null;
 		}
+		return possibleUser;
 	}
 	
 }

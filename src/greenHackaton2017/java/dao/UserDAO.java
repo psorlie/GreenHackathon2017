@@ -13,6 +13,7 @@ public class UserDAO {
 	}
 	
 	public User getUser(String login) throws SQLException {
+		
 		ResultSet res = ConnexionBDD.requestFromDataBase("SELECT login, password FROM User WHERE login = '" + login + "'");
 		if(res.next()) {
 			return (new User(res.getString(1), res.getString(2)));
