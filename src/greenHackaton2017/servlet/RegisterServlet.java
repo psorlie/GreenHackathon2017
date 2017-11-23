@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			resultat = ConnexionBDD.requestFromDataBase("SELECT COUNT(id) FROM Users WHERE login='" + login + "'");
 			if (!resultat.next() && password.equals(confirmPassword)) {
-				ConnexionBDD.requestFromDataBase(
+				ConnexionBDD.insertIntoDataBase(
 						"CREATE Users(login, password) VALUES('" + login + "','" + password + "')");
 				resultat = ConnexionBDD.requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
 				int id = resultat.getInt("id");
