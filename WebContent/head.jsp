@@ -10,3 +10,4 @@
   <link href="bootstrap-theme/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="bootstrap-theme/css/sb-admin.css" rel="stylesheet">
+  
