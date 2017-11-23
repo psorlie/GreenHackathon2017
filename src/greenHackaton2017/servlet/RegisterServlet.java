@@ -42,12 +42,11 @@ public class RegisterServlet extends HttpServlet {
 		ResultSet resultat;
 
 		try {
-			resultat = ConnexionBDD.requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
+			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
 			if (!resultat.next() && password.equals(confirmPassword) && !password.equals("")) {
-				ConnexionBDD.insertIntoDataBase(
+				ConnexionBDD.getConnexion().insertIntoDataBase(
 						"insert into Users(login, password) VALUES('" + login + "','" + password + "')");
-				System.out.println("SELECT id FROM Users WHERE login='" + login + "'");
-				resultat = ConnexionBDD.requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
+				resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
 				resultat.next();
 				int id = resultat.getInt("id");
 				session.setAttribute("id", id);
@@ -56,7 +55,6 @@ public class RegisterServlet extends HttpServlet {
 				dispatcher = request.getRequestDispatcher("register.jsp");
 			}
 		} catch (SQLException e) {
-			System.out.println("erreur ?" + e);
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

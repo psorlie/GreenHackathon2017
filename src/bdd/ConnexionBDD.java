@@ -15,15 +15,12 @@ public class ConnexionBDD {
 	private Connection connection;
 
 	private ConnexionBDD() {
-		if(this.connection == null) {
-			this.connection = null;
-		}
 		this.connection = this.ouvrir();
 	}
 
 	public static ConnexionBDD getConnexion() {
 		if (conn == null) {
-			conn =  new ConnexionBDD();
+			conn = new ConnexionBDD();
 		}
 		return conn;
 	}
@@ -34,6 +31,7 @@ public class ConnexionBDD {
 	 * @return Connection connexion Ã  la base de donnÃ©es
 	 */
 	private Connection ouvrir() {
+		Connection connection = null;
 		try {
 			// TODO remettre cette version simplifier pour la BDD
 			// String address = "localhost";
@@ -51,17 +49,14 @@ public class ConnexionBDD {
 			String user = properties.getProperty("user");
 			String password = properties.getProperty("pass");
 
-			try {
 				Class.forName("com.mysql.jdbc.Driver");
-			} catch (Exception e) {
-			}
-			Connection connection = DriverManager.getConnection(
+			
+			connection = DriverManager.getConnection(
 					"jdbc:mysql://" + address + "/" + database + "?user=" + user + "&password=" + password);
-
 
 			// conn = DriverManager.getConnection(URL, user, password);
 
-		} catch (SQLException | IOException e) {
+		} catch (SQLException | IOException | ClassNotFoundException e) {
 		}
 
 		return connection;

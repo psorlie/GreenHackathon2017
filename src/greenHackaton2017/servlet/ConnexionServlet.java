@@ -27,8 +27,8 @@ public class ConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String identifiant = (String) request.getAttribute("identifiant");
-		String mdp = (String) request.getAttribute("mdp");
+		String identifiant = (String) request.getParameter("identifiant");
+		String mdp = (String) request.getParameter("mdp");
 		
 		
 	

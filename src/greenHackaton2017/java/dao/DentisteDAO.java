@@ -45,7 +45,7 @@ public class DentisteDAO {
 				+ (vendrediOuverture != null ? " AND " + vendrediOuverture + ">=vendrediOuverture" : "") 
 				+ (vendrediFermeture != null ? " AND " + vendrediFermeture + "<=vendrediFermeture" : "") ;
 
-		ResultSet result = ConnexionBDD.requestFromDataBase(
+		ResultSet result = ConnexionBDD.getConnexion().requestFromDataBase(
 				"SELECT d.first_name, d.last_name, d.email, d.gender, d.speciality, d.adress, d.city, d.phone, d.image, "
 						+ "o.lundiOuverture, o.lundiFermeture, o.mardiOuverture, o.mardiFermeture, o.mercrediOuverture, "
 						+ "o.mercrediFermeture, o.jeudiOuverture, o.jeudiFermeture, o.vendrediOuverture, o.vendrediFermeture "
