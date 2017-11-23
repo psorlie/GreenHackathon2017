@@ -30,26 +30,30 @@ public class DentisteDAO {
 		Integer vendrediOuverture = dentiste.getOpeningHours()[4].getOpening();
 		Integer vendrediFermeture = dentiste.getOpeningHours()[4].getClosing();
 
-		String clauseWhere = (lastName != null ? " AND '" + lastName + "'=first_name" : "")
-				+ (speciality != null ? " AND '" + speciality + "'=speciality" : "")
-				+ (city != null ? " AND '" + city + "'=city" : "") 
-				+ (lundiOuverture != null ? " AND " + lundiOuverture + ">=MondayOpening" : "") 
-				+ (lundiFermeture != null ? " AND " + lundiFermeture + "<=MondayClosing" : "") 
-				+ (mardiOuverture != null ? " AND " + mardiOuverture + ">=TuesdayOpening" : "") 
-				+ (mardiFermeture != null ? " AND " + mardiFermeture + "<=TuesdayClosing" : "") 
-				+ (mercrediOuverture != null ? " AND " + mercrediOuverture + ">=WednesdayOpening" : "") 
-				+ (mercrediFermeture != null ? " AND " + mercrediFermeture + "<=WednesdayClosing" : "") 
-				+ (jeudiOuverture != null ? " AND " + jeudiOuverture + ">=ThursdayOpening" : "") 
-				+ (jeudiFermeture != null ? " AND " + jeudiFermeture + "<=ThursdayClosing" : "") 
-				+ (vendrediOuverture != null ? " AND " + vendrediOuverture + ">=FridayOpening" : "") 
-				+ (vendrediFermeture != null ? " AND " + vendrediFermeture + "<=FridayClosing" : "") ;
+		String clauseWhere = (lastName != "" ? " AND '" + lastName + "'=first_name" : "")
+				+ (speciality != "" ? " AND '" + speciality + "'=speciality" : "")
+				+ (city != "" ? " AND '" + city + "'=city" : "") 
+				+ (lundiOuverture != null ? " AND " + lundiOuverture + "<=MondayOpening" : "") 
+				+ (lundiFermeture != null ? " AND " + lundiFermeture + ">=MondayClosing" : "") 
+				+ (mardiOuverture != null ? " AND " + mardiOuverture + "<=TuesdayOpening" : "") 
+				+ (mardiFermeture != null ? " AND " + mardiFermeture + ">=TuesdayClosing" : "") 
+				+ (mercrediOuverture != null ? " AND " + mercrediOuverture + "<=WednesdayOpening" : "") 
+				+ (mercrediFermeture != null ? " AND " + mercrediFermeture + ">=WednesdayClosing" : "") 
+				+ (jeudiOuverture != null ? " AND " + jeudiOuverture + "<=ThursdayOpening" : "") 
+				+ (jeudiFermeture != null ? " AND " + jeudiFermeture + ">=ThursdayClosing" : "") 
+				+ (vendrediOuverture != null ? " AND " + vendrediOuverture + "<=FridayOpening" : "") 
+				+ (vendrediFermeture != null ? " AND " + vendrediFermeture + ">=FridayClosing" : "") ;
 
-		ResultSet result = ConnexionBDD.getConnexion().requestFromDataBase(
-				"SELECT first_name, last_name, email, gender, speciality, address, city, phone, image, "
-						+ "MondayOpening, MondayClosing, TuesdayOpening, TuesdayClosing, WednesdayOpening, "
-						+ "WednesdayClosing, ThursdayOpening, ThursdayClosing, FridayOpening, FridayClosing "
-						+ "FROM dentist d, openings o " + "WHERE d.id = o.id_dentist" + clauseWhere);
+		String request = "SELECT first_name, last_name, email, gender, speciality, address, city, phone, image, "
+				+ "MondayOpening, MondayClosing, TuesdayOpening, TuesdayClosing, WednesdayOpening, "
+				+ "WednesdayClosing, ThursdayOpening, ThursdayClosing, FridayOpening, FridayClosing "
+				+ "FROM dentist d, openings o " + "WHERE d.id = o.id_dentist" + clauseWhere;
 
+		
+		ResultSet result = ConnexionBDD.getConnexion().requestFromDataBase(request);
+				
+		System.out.println(request);
+		
 		result.last();
 		int nbDentist = result.getRow();
 		result.beforeFirst();
@@ -60,6 +64,7 @@ public class DentisteDAO {
 			dentistes[i] = map(result);
 			++i;
 		}
+		System.out.println(i);
 		return dentistes;
 	}
 
@@ -70,17 +75,17 @@ public class DentisteDAO {
 	 */
 	private static Dentiste map(ResultSet result) throws SQLException {
 		
-		Day[] days = { new Day(result.getInt("lundiOuverture"), result.getInt("lundiFermeture")),
-				new Day(result.getInt("mardiOuverture"), result.getInt("mardiFermeture")),
-				new Day(result.getInt("mercrediOuverture"), result.getInt("mercrediFermeture")),
-				new Day(result.getInt("jeudiOuverture"), result.getInt("jeudiFermeture")),
-				new Day(result.getInt("vendrediOuverture"), result.getInt("vendrediFermeture")) };
+		Day[] days = { new Day(result.getInt("MondayOpening"), result.getInt("MondayClosing")),
+				new Day(result.getInt("TuesdayOpening"), result.getInt("TuesdayClosing")),
+				new Day(result.getInt("WednesdayOpening"), result.getInt("WednesdayClosing")),
+				new Day(result.getInt("ThursdayOpening"), result.getInt("ThursdayClosing")),
+				new Day(result.getInt("FridayOpening"), result.getInt("FridayClosing")) };
 		
 		return new Dentiste(
 				result.getString("first_name"), result.getString("last_name"),
 				result.getString("speciality"), days,
 				result.getString("image"), result.getString("city"), 
-				result.getString("adresse"), result.getBoolean("gender"),
+				result.getString("address"), result.getBoolean("gender"),
 				result.getString("email"), result.getLong("phone"));
 	}
 }
