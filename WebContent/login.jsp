@@ -11,7 +11,7 @@
 		<div class="card card-login mx-auto mt-5">
 			<div class="card-header">Login</div>
 			<div class="card-body">
-				<form action="LoginServlet" method="get">
+				<form action="LoginServlet" method="post">
 					<div class="form-group">
 						<label for="login">Identifiant</label> <input
 							class="form-control" id="login" name = "login" type="text"

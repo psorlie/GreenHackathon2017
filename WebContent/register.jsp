@@ -11,7 +11,7 @@
 		<div class="card card-register mx-auto mt-5">
 			<div class="card-header">Register an Account</div>
 			<div class="card-body">
-				<form method="get"  action="RegisterServlet">
+				<form method="post"  action="RegisterServlet">
 					<div class="form-group">
 						<label for="login">Identifiant</label> <input class="form-control"
 							id="login" name ="login" type="text" aria-describedby="loginHelp"
