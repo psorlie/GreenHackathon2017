@@ -1,7 +1,4 @@
-  <% if (session.getAttribute("utilisateur") == null) { 
+  <% if (session.getAttribute("login") == null) { 
    		RequestDispatcher dispat = request.getRequestDispatcher("login.jsp");
 		dispat.forward(request, response);
-	} else{
-		RequestDispatcher dispat = request.getRequestDispatcher("accueil.jsp");
-		dispat.forward(request, response);
-	}%>
+	} %>

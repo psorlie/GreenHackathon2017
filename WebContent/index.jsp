@@ -2,16 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
-<jsp:include page="verifSession.jsp" />
-
-<head>
-	<jsp:include page="head.jsp" />
-	<title>Insert title here</title>
-</head>
-<body>
-		<div>
-			<jsp:include page="bootstrapJS.jsp"/>
-		</div>
-</body>
+	<jsp:include page="verifSession.jsp" />
+	<% if(request.getSession().getAttribute("login") != null){
+		request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		}%>
 </html>
