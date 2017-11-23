@@ -11,14 +11,19 @@ import java.sql.Statement;
 
 public class ConnexionBDD {
 
-	private static Connection conn;
+	private static ConnexionBDD conn;
+	private Connection connection;
 
 	private ConnexionBDD() {
+		if(this.connection == null) {
+			this.connection = null;
+		}
+		this.connection = this.ouvrir();
 	}
 
-	public static Connection getConnection() {
+	public static ConnexionBDD getConnexion() {
 		if (conn == null) {
-			conn = ConnexionBDD.ouvrir();
+			conn =  new ConnexionBDD();
 		}
 		return conn;
 	}
@@ -28,8 +33,7 @@ public class ConnexionBDD {
 	 * 
 	 * @return Connection connexion Ã  la base de donnÃ©es
 	 */
-	private static Connection ouvrir() {
-		Connection connection = null;
+	private Connection ouvrir() {
 		try {
 			// TODO remettre cette version simplifier pour la BDD
 			// String address = "localhost";
@@ -51,7 +55,7 @@ public class ConnexionBDD {
 				Class.forName("com.mysql.jdbc.Driver");
 			} catch (Exception e) {
 			}
-			connection = DriverManager.getConnection(
+			Connection connection = DriverManager.getConnection(
 					"jdbc:mysql://" + address + "/" + database + "?user=" + user + "&password=" + password);
 
 
@@ -63,28 +67,25 @@ public class ConnexionBDD {
 		return connection;
 	}
 
-	public static ResultSet requestFromDataBase(String sqlQuery) throws SQLException {
-		Statement stmt;
-		ResultSet rset = null;
-		ConnexionBDD.getConnection();
-		stmt = conn.createStatement();
+	public ResultSet requestFromDataBase(String sqlQuery) throws SQLException {
+		Statement stmt = this.connection.createStatement();
 		// stmt = conn.createStatement();
+		ResultSet rset = null;
 		if (stmt.execute(sqlQuery)) {
 			rset = stmt.getResultSet();
 		}
 		return rset;
 	}
 
-	public static void insertIntoDataBase(String insert) throws SQLException {
-		ConnexionBDD.getConnection();
-		conn.createStatement().execute(insert);
+	public void insertIntoDataBase(String insert) throws SQLException {
+		this.connection.createStatement().execute(insert);
 	}
 
-	public static void closeRequestToDataBase() throws SQLException {
+	public void closeRequestToDataBase() throws SQLException {
 
-		if (conn != null) {
-			conn.close();
-			conn = null;
+		if (this.connection != null) {
+			this.connection.close();
+			this.connection = null;
 		}
 	}
 
