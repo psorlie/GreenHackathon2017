@@ -19,7 +19,6 @@ public class ConnexionBDD {
 	public static Connection getConnection() {
 		if (conn == null) {
 			conn = ConnexionBDD.ouvrir();
-			System.out.println("coucou");
 		}
 		return conn;
 	}
@@ -30,7 +29,7 @@ public class ConnexionBDD {
 	 * @return Connection connexion Ã  la base de donnÃ©es
 	 */
 	private static Connection ouvrir() {
-		Connection conn = null;
+		Connection connection = null;
 		try {
 			// TODO remettre cette version simplifier pour la BDD
 			// String address = "localhost";
@@ -48,17 +47,20 @@ public class ConnexionBDD {
 			String user = properties.getProperty("user");
 			String password = properties.getProperty("pass");
 
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager
-					.getConnection("jdbc:mysql://" + address + "/" + database + "?user=" + user + "&password="
-							+ password + "&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false");
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (Exception e) {
+			}
+			connection = DriverManager.getConnection(
+					"jdbc:mysql://" + address + "/" + database + "?user=" + user + "&password=" + password);
+
 
 			// conn = DriverManager.getConnection(URL, user, password);
 
-		} catch (SQLException|ClassNotFoundException|IOException e) {
+		} catch (SQLException | IOException e) {
 		}
 
-		return conn;
+		return connection;
 	}
 
 	public static ResultSet requestFromDataBase(String sqlQuery) throws SQLException {
@@ -66,6 +68,7 @@ public class ConnexionBDD {
 		ResultSet rset = null;
 		ConnexionBDD.getConnection();
 		stmt = conn.createStatement();
+		// stmt = conn.createStatement();
 		if (stmt.execute(sqlQuery)) {
 			rset = stmt.getResultSet();
 		}
