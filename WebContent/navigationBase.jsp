@@ -4,7 +4,11 @@
 		<a class="navbar-brand" href="accueil.jsp"><i>Dentiste Search Engine 9000</i></a>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 		  <ul class="navbar-nav ml-auto">
-			
+			<li class="nav-item">
+			<% if (request.getSession().getAttribute("login") != null){ %>
+					<label class="nav-link"><strong>Utilisateur : <%= request.getSession().getAttribute("login") %></strong></label>
+			<% } %>
+			</li>
 			<li class="nav-item">
 			  <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
 				<i class="fa fa-fw fa-sign-out"></i>Logout</a>
