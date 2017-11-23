@@ -1,8 +1,13 @@
 package greenHackaton2017.java.model;
 
 public class Day {
-	private int opening;
-	private int closing;
+	private Integer opening;
+	private Integer closing;
+	
+	public Day(Integer opening, Integer closing){
+		this.opening = opening;
+		this.closing = closing;
+	}
 	
 	public int getOpening() {
 		return this.opening;
