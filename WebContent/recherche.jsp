@@ -146,7 +146,7 @@
 										and Maxillofacial Pathology</option>
 									<option value="Oral and Maxillofacial Surgery">Oral
 										and Maxillofacial Surgery</option>
-									<option value="Orthondontics and Dentofacial Orthopedics">Orthondontics
+									<option value="Orthodontics and Dentofacial Orthopedics">Orthodontics
 										and Dentofacial Orthopedics</option>
 									<option value="Pediatric Dentistry">Pediatric
 										Dentistry</option>

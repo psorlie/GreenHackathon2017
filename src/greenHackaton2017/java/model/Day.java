@@ -9,19 +9,19 @@ public class Day {
 		this.closing = closing;
 	}
 	
-	public int getOpening() {
+	public Integer getOpening() {
 		return this.opening;
 	}
 	
-	public int getClosing() {
+	public Integer getClosing() {
 		return this.closing;
 	}
 	
-	public void setOpening(int opening) {
+	public void setOpening(Integer opening) {
 		this.opening = opening;
 	}
 	
-	public void setClosing(int closing) {
+	public void setClosing(Integer closing) {
 		this.closing = closing;
 	}
 }

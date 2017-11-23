@@ -7,10 +7,10 @@
 </head>
 
 <%
-	if (session.getAttribute("dentiste") == null) {
-		RequestDispatcher dispat = request.getRequestDispatcher("index.jsp?connexion=false");
-		dispat.forward(request, response);
-	}
+// 	if (session.getAttribute("dentiste") == null) {
+// 		RequestDispatcher dispat = request.getRequestDispatcher("index.jsp?connexion=false");
+// 		dispat.forward(request, response);
+// 	}
 %>
 
 <%@ page import="greenHackaton2017.java.model.User"%>
@@ -18,7 +18,7 @@
 <%@ page import="greenHackaton2017.java.model.Day"%>
 
 <%
-	Dentiste dentiste = (Dentiste) request.getSession().getAttribute("dentiste");
+	Dentiste dentiste = ((User) request.getSession().getAttribute("utilisateur")).getDentistesConsultes()[0];
 %>
 
 <body>
@@ -40,7 +40,7 @@
 								<label><%=(dentiste.isFemale() ? "Mrs " : "Mr. ") + dentiste.getSurname() + " " + dentiste.getFirstName()%></label>
 							</div>
 							<div class="form-group">
-								<label><%=dentiste.getSpeciality()%>></label>
+								<label><%=dentiste.getSpeciality()%></label>
 							</div>
 						</div>
 					</div>
