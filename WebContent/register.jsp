@@ -34,7 +34,7 @@
 					<button type="submit" class="btn  btn-primary btn-block">Register</button>
 				</form>
 				<div class="text-center">
-					<a class="d-block small mt-3" href="login.jsp">Login Page</a> <a
+					<a class="d-block small mt-3" href="login.jsp">Login Page</a>
 				</div>
 			</div>
 		</div>

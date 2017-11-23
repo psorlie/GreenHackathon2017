@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 
 			ResultSet resultat = statement.executeQuery("SELECT password, id FROM Users WHERE login='" + login + "'");
 
-			if (resultat.getString("password") == password) {
+			if (resultat.getString("password").equals(password)) {
 				int id = resultat.getInt("id");
 				session.setAttribute("id", id);
 				dispatcher = request.getRequestDispatcher("accueil.jsp");

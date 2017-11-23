@@ -1,4 +1,4 @@
-package modeles;
+package greenHackaton2017.java.model;
 
 public class Day {
 	private int opening;

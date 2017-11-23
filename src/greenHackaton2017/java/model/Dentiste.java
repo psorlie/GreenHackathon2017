@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modeles;
+package greenHackaton2017.java.model;
 
 /**
  * @author sorlie
