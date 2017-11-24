@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bdd.ConnexionBDD;
+import greenHackaton2017.java.model.User;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -46,8 +47,8 @@ public class RegisterServlet extends HttpServlet {
 			if (!resultat.next() && password.equals(confirmPassword) && !password.equals("")) {
 				ConnexionBDD.getConnexion().insertIntoDataBase(
 						"insert into Users(login, password) VALUES('" + login + "','" + password + "')");
-				
-				session.setAttribute("login", login);
+
+				session.setAttribute("utilisateur", new User(login, password));
 				dispatcher = request.getRequestDispatcher("accueil.jsp");
 			}
 		} catch (SQLException e) {

@@ -22,4 +22,9 @@ public class UserDAO {
 		}
 		
 	}
+	
+	public void setContacter(User utilisateur, int idDentist) throws SQLException{
+		ConnexionBDD.getConnexion().requestFromDataBase("INSERT INTO `relation1`(`id`, `id_users`) VALUES "
+				+ "("+idDentist+",(SELECT `id` FROM `users` WHERE `login` = '"+utilisateur.getLogin()+"'))");
+	}
 }
