@@ -50,7 +50,6 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("erf");
 		}
 
 		dispatcher.forward(request, response);

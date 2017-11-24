@@ -23,7 +23,15 @@ public class UserDAO {
 		
 	}
 	
-	public void setContacter(User utilisateur, int idDentist) throws SQLException{
+	public Boolean isConnecte(User utilisateur, int idDentist) throws SQLException{
+		System.out.println("SELECT id FROM relation1 "
+				+ "WHERE id='"+idDentist+"' and id_users= (SELECT `id` FROM `users` WHERE `login` = '"+utilisateur.getLogin()+"')");
+		ResultSet res = ConnexionBDD.getConnexion().requestFromDataBase("SELECT id FROM relation1 "
+				+ "WHERE id='"+idDentist+"' and id_users= (SELECT `id` FROM `users` WHERE `login` = '"+utilisateur.getLogin()+"')");
+		return res.next();
+	}
+	
+	public void contacter(User utilisateur, int idDentist) throws SQLException{
 		ConnexionBDD.getConnexion().requestFromDataBase("INSERT INTO `relation1`(`id`, `id_users`) VALUES "
 				+ "("+idDentist+",(SELECT `id` FROM `users` WHERE `login` = '"+utilisateur.getLogin()+"'))");
 	}

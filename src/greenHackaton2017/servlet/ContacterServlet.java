@@ -21,27 +21,32 @@ import greenHackaton2017.java.model.User;
 public class ContacterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public ContacterServlet() {
-    	super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public ContacterServlet() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispat = null;
 		HttpSession session = request.getSession();
-		
-		int idDentiste = Integer.parseInt(request.getParameter("id"));
+
+		int idDentiste = Integer.parseInt(request.getParameter("idDentist"));
 		User utilisateur = (User) session.getAttribute("utilisateur");
 		try {
-			(new UserDAO()).setContacter(utilisateur, idDentiste);
+			UserDAO uDAO = new UserDAO();
+			if (!uDAO.isConnecte(utilisateur, idDentiste)) {
+				uDAO.contacter(utilisateur, idDentiste);
+			}
 		} catch (SQLException e) {
 		}
-		
-		RequestDispatcher dispat = request.getRequestDispatcher("index.jsp?connexion=false");
-	    dispat.forward(request, response);
+		dispat = request.getRequestDispatcher("accueil.jsp");
+		dispat.forward(request, response);
 	}
 }
