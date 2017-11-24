@@ -12,7 +12,7 @@ import greenHackaton2017.java.model.Dentiste;
 public class DentisteDAO {
 
 	public static List<Dentiste> trouverDentistes(Dentiste dentiste) throws SQLException {
-		
+
 		String lastName = dentiste.getSurname();
 		String speciality = dentiste.getSpeciality();
 		String city = dentiste.getCity();
@@ -31,20 +31,33 @@ public class DentisteDAO {
 				+ (speciality != "" ? " AND '" + speciality + "'=speciality" : "")
 				+ (city != "" ? " AND '" + city + "'=city" : "")
 				+ (lundiOuverture != null || mardiOuverture != null || mercrediOuverture != null
-						|| jeudiOuverture != null || vendrediOuverture != null
-								? (" AND (" + (lundiOuverture != null ? "(" + lundiFermeture + ">MondayOpening AND MondayOpening != 0) OR " : "")
+						|| jeudiOuverture != null
+						|| vendrediOuverture != null
+								? (" AND ("
+										+ (lundiOuverture != null
+												? "(" + lundiFermeture + ">MondayOpening AND MondayOpening != 0) OR "
+												: "")
 										+ (lundiFermeture != null ? lundiOuverture + "<MondayClosing OR " : "")
 
-										+ (mardiOuverture != null ? "(" + mardiFermeture + ">TuesdayOpening AND MondayOpening != 0) OR " : "")
+										+ (mardiOuverture != null
+												? "(" + mardiFermeture + ">TuesdayOpening AND MondayOpening != 0) OR "
+												: "")
 										+ (mardiFermeture != null ? mardiOuverture + "<TuesdayClosing OR " : "")
 
-										+ (mercrediOuverture != null ? "(" + mercrediFermeture + ">WednesdayOpening AND MondayOpening != 0) OR " : "")
+										+ (mercrediOuverture != null
+												? "(" + mercrediFermeture
+														+ ">WednesdayOpening AND MondayOpening != 0) OR "
+												: "")
 										+ (mercrediFermeture != null ? mercrediOuverture + "<WednesdayClosing OR " : "")
 
-										+ (jeudiOuverture != null ? "(" + jeudiFermeture + ">ThursdayOpening AND MondayOpening != 0) OR " : "")
+										+ (jeudiOuverture != null
+												? "(" + jeudiFermeture + ">ThursdayOpening AND MondayOpening != 0) OR "
+												: "")
 										+ (jeudiFermeture != null ? jeudiOuverture + "<ThursdayClosing OR " : "")
 
-										+ (vendrediOuverture != null ? "(" + vendrediFermeture + ">FridayOpening AND MondayOpening != 0) OR " : "")
+										+ (vendrediOuverture != null
+												? "(" + vendrediFermeture + ">FridayOpening AND MondayOpening != 0) OR "
+												: "")
 										+ (vendrediFermeture != null ? vendrediOuverture + "<FridayClosing OR " : "")
 										+ " 0)")
 								: "");
@@ -53,10 +66,26 @@ public class DentisteDAO {
 				+ "MondayOpening, MondayClosing, TuesdayOpening, TuesdayClosing, WednesdayOpening, "
 				+ "WednesdayClosing, ThursdayOpening, ThursdayClosing, FridayOpening, FridayClosing "
 				+ "FROM dentist d, openings o " + "WHERE d.id = o.id_dentist" + clauseWhere;
-		
+
 		ResultSet result = ConnexionBDD.getConnexion().requestFromDataBase(request);
 
 		List<Dentiste> dentistes = new ArrayList<Dentiste>();
+		while (result.next()) {
+			dentistes.add(map(result));
+		}
+		return dentistes;
+	}
+
+	public static List<Dentiste> dentistesContactes(String login) throws SQLException {
+		List<Dentiste> dentistes = new ArrayList<>();
+		String requete = "SELECT d.id, first_name, last_name, email, gender, speciality, address, city, phone"
+				+ ", image, MondayOpening, MondayClosing, TuesdayOpening, TuesdayClosing, WednesdayOpening,"
+				+ " WednesdayClosing, ThursdayOpening, ThursdayClosing, FridayOpening, FridayClosing FROM "
+				+ "dentist d, openings o , relation1 r where d.id = o.id_dentist AND r.id = d.id AND r.id_users"
+				+ " = (select id from users where login = '"+login+"')";
+		
+		ResultSet result = ConnexionBDD.getConnexion().requestFromDataBase(requete);
+
 		while (result.next()) {
 			dentistes.add(map(result));
 		}
