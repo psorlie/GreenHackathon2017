@@ -4,11 +4,12 @@
 
 <%@ page import="greenHackaton2017.java.model.User"%>
 <%@ page import="greenHackaton2017.java.model.Dentiste"%>
+<%@ page import="java.util.List"%>
 
 <%
 	User userCourant = (User) request.getSession().getAttribute("utilisateur");
-	Dentiste[] dentistes = userCourant.getDentistesConsultes();
-	int nbResultats = dentistes.length;
+	List<Dentiste> dentistes = userCourant.getDentistesConsultes();
+	int nbResultats = dentistes.size();
 %>
 
 <jsp:include page="verifSession.jsp" />
@@ -41,7 +42,7 @@
 				</div>
 				<div class="card-body">
 					<%
-						if (dentistes.length == 0) {
+						if (dentistes.size() == 0) {
 					%>
 					<h4>Aucun resultat pour cette recherche</h4>
 					<%
@@ -50,7 +51,6 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Photo</th>
 								<th>Nom</th>
 								<th>Ville</th>
 								<th>Specialite</th>
@@ -60,22 +60,14 @@
 						<tbody>
 							<%
 								for (int i = 0; i < nbResultats; ++i) {
-							%>
-							<tr>
-
-								<td>photo</td>
-
-								<td><a href='detailsDentiste.jsp'> <%=(dentistes[i].isFemale() ? "Mme. " : "M. ") + dentistes[i].getSurname() + " "
-							+ dentistes[i].getFirstName()%></a></td>
-
-								<td>ville</td>
-								<td>specialite</td>
-							</tr>
-
-							<%
+									out.println("<tr onclick=\"location.href='detailsDentiste.jsp?nDentist="+i+"'\">");
+									out.println("<td>"+(dentistes.get(i).isFemale() ? "Mme. " : "M. ") + dentistes.get(i).getSurname() + " "
+											+ dentistes.get(i).getFirstName()+"</td>");
+									out.println("<td>"+dentistes.get(i).getCity()+"</td>");
+									out.println("<td>"+dentistes.get(i).getSpeciality()+"</td>");
+									out.println("</tr>");
 								}
 							%>
-
 						</tbody>
 					</table>
 					<%
@@ -93,11 +85,11 @@
 	<!-- Pied de Page -->
 	<div class="row">
 		<footer class="sticky-footer">
-		<div class="container">
-			<div class="text-center">
-				<small>Size : </small>
+			<div class="container">
+				<div class="text-center">
+					<small>Size : </small>
+				</div>
 			</div>
-		</div>
 		</footer>
 	</div>
 
@@ -128,11 +120,11 @@
 			</div>
 		</div>
 	</div>
-	</div>
 
 	<div>
 
 		<jsp:include page="bootstrapJS.jsp" />
 	</div>
+
 </body>
 </html>

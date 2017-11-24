@@ -2,6 +2,9 @@ package greenHackaton2017.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -78,13 +81,17 @@ public class ResultatsRecherche extends HttpServlet {
 			dentiste.setCity(request.getParameter("ville"));
 			dentiste.setOpeningHours(semaine);
 			dentiste.setSpeciality(request.getParameter("specialite"));
-			Dentiste[] dentistes = null;
+			List<Dentiste> dentistes = new ArrayList<Dentiste>();
+
 			try {
-				dentistes = ( new DentisteDAO() ).trouverDentistes(dentiste);
+				dentistes = DentisteDAO.trouverDentistes(dentiste);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			Collections.shuffle(dentistes);
+			
 			user.setDentistesConsultes(dentistes);
 			session.setAttribute("utilisateur", user);
 

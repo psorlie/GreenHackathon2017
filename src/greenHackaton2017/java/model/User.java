@@ -1,9 +1,12 @@
 package greenHackaton2017.java.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 	private String login;
 	private String password;
-	private Dentiste[] dentistesConsultes;
+	private List<Dentiste> dentistesConsultes = new ArrayList<Dentiste>();
 	
 	public User(){
 		
@@ -30,11 +33,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Dentiste[] getDentistesConsultes() {
+	public List<Dentiste> getDentistesConsultes() {
 		return dentistesConsultes;
 	}
 
-	public void setDentistesConsultes(Dentiste[] dentistesConsultes) {
+	public void setDentistesConsultes(List<Dentiste> dentistesConsultes) {
 		this.dentistesConsultes = dentistesConsultes;
 	}
 

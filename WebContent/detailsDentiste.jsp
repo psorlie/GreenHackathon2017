@@ -20,7 +20,7 @@
 <%@ page import="greenHackaton2017.java.model.Day"%>
 
 <%
-	Dentiste dentiste = ((User) request.getSession().getAttribute("utilisateur")).getDentistesConsultes()[0];
+	Dentiste dentiste = ((User) request.getSession().getAttribute("utilisateur")).getDentistesConsultes().get(Integer.parseInt(request.getParameter("nDentist")));
 %>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<!-- Navigation -->
