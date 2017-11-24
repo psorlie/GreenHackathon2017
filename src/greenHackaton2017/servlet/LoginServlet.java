@@ -36,13 +36,12 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String login = (String) request.getParameter("login");
 		String password = (String) request.getParameter("password");
 
 		ResultSet resultat;
 		try {
-			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT password FROM Users WHERE login='" + login + "'");
+			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT password FROM users WHERE login='" + login + "'");
 
 			if (resultat.next() && resultat.getString(1).equals(password)) {
 				session.setAttribute("utilisateur", new User(login, password));

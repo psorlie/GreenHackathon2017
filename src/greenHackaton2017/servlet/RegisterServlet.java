@@ -43,10 +43,10 @@ public class RegisterServlet extends HttpServlet {
 		ResultSet resultat;
 
 		try {
-			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT id FROM Users WHERE login='" + login + "'");
+			resultat = ConnexionBDD.getConnexion().requestFromDataBase("SELECT id FROM users WHERE login='" + login + "'");
 			if (!resultat.next() && password.equals(confirmPassword) && !password.equals("")) {
 				ConnexionBDD.getConnexion().insertIntoDataBase(
-						"insert into Users(login, password) VALUES('" + login + "','" + password + "')");
+						"insert into users(login, password) VALUES('" + login + "','" + password + "')");
 
 				session.setAttribute("utilisateur", new User(login, password));
 				dispatcher = request.getRequestDispatcher("accueil.jsp");

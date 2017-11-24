@@ -106,7 +106,8 @@
 											<div class="form-group col-lg-6">
 												<div class="form-horizontal">
 													<div class="form-group col-lg-12">
-														<label><%=dentiste.getPhone()%></label>
+														<label><%=dentiste.getPhoneString().substring(0, 3)+"-"
+														+dentiste.getPhoneString().substring(3, 6)+"-"+dentiste.getPhoneString().substring(6, 10)%></label>
 													</div>
 													<div class="form-group col-lg-12">
 														<label><%=dentiste.getEmail()%></label>

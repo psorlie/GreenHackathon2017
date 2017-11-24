@@ -49,8 +49,8 @@ public class ConnexionBDD {
 			String user = properties.getProperty("user");
 			String password = properties.getProperty("pass");
 
-				Class.forName("com.mysql.jdbc.Driver");
-			
+			Class.forName("com.mysql.jdbc.Driver");
+
 			connection = DriverManager.getConnection(
 					"jdbc:mysql://" + address + "/" + database + "?user=" + user + "&password=" + password);
 

@@ -3,6 +3,8 @@
  */
 package greenHackaton2017.java.model;
 
+import java.util.Objects;
+
 /**
  * @author sorlie
  *
@@ -81,6 +83,10 @@ public class Dentiste {
 	
 	public Long getPhone() {
 		return this.phone;
+	}
+	
+	public String getPhoneString() {
+		return Objects.toString(this.phone);
 	}
 	
 	/*************************
