@@ -8,6 +8,7 @@ package greenHackaton2017.java.model;
  *
  */
 public class Dentiste {
+	private Integer id;
 	private String firstName;
 	private String surname;
 	private String speciality;
@@ -23,8 +24,9 @@ public class Dentiste {
 		
 	}
 	
-	public Dentiste(String firstName, String surname, String speciality, Day[] openingHours,
+	public Dentiste(Integer id, String firstName, String surname, String speciality, Day[] openingHours,
 			String photo, String city, String address, boolean gender, String email, Long phone) {
+		this.id = id;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.speciality = speciality;
@@ -123,5 +125,13 @@ public class Dentiste {
 	
 	public void setPhone(Long phone) {
 		this.phone = phone;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

@@ -33,18 +33,22 @@ public class DentisteDAO {
 		String clauseWhere = (lastName != "" ? " AND '" + lastName + "'=first_name" : "")
 				+ (speciality != "" ? " AND '" + speciality + "'=speciality" : "")
 				+ (city != "" ? " AND '" + city + "'=city" : "") 
-				+ (lundiOuverture != null ? " AND " + lundiOuverture + "<=MondayOpening" : "") 
-				+ (lundiFermeture != null ? " AND " + lundiFermeture + ">=MondayClosing" : "") 
-				+ (mardiOuverture != null ? " AND " + mardiOuverture + "<=TuesdayOpening" : "") 
-				+ (mardiFermeture != null ? " AND " + mardiFermeture + ">=TuesdayClosing" : "") 
-				+ (mercrediOuverture != null ? " AND " + mercrediOuverture + "<=WednesdayOpening" : "") 
-				+ (mercrediFermeture != null ? " AND " + mercrediFermeture + ">=WednesdayClosing" : "") 
-				+ (jeudiOuverture != null ? " AND " + jeudiOuverture + "<=ThursdayOpening" : "") 
-				+ (jeudiFermeture != null ? " AND " + jeudiFermeture + ">=ThursdayClosing" : "") 
-				+ (vendrediOuverture != null ? " AND " + vendrediOuverture + "<=FridayOpening" : "") 
-				+ (vendrediFermeture != null ? " AND " + vendrediFermeture + ">=FridayClosing" : "") ;
+				+ (lundiOuverture != null ? " AND " + lundiOuverture + ">=MondayOpening" : "") 
+				+ (lundiFermeture != null ? " AND " + lundiFermeture + "<=MondayClosing" : "") 
+				
+				+ (mardiOuverture != null ? " AND " + mardiOuverture + ">=TuesdayOpening" : "") 
+				+ (mardiFermeture != null ? " AND " + mardiFermeture + "<=TuesdayClosing" : "")
+				
+				+ (mercrediOuverture != null ? " AND " + mercrediOuverture + ">=WednesdayOpening" : "") 
+				+ (mercrediFermeture != null ? " AND " + mercrediFermeture + "<=WednesdayClosing" : "") 
+				
+				+ (jeudiOuverture != null ? " AND " + jeudiOuverture + ">=ThursdayOpening" : "") 
+				+ (jeudiFermeture != null ? " AND " + jeudiFermeture + "<=ThursdayClosing" : "")
+				
+				+ (vendrediOuverture != null ? " AND " + vendrediOuverture + ">=FridayOpening" : "") 
+				+ (vendrediFermeture != null ? " AND " + vendrediFermeture + "<=FridayClosing" : "") ;
 
-		String request = "SELECT first_name, last_name, email, gender, speciality, address, city, phone, image, "
+		String request = "SELECT d.id, first_name, last_name, email, gender, speciality, address, city, phone, image, "
 				+ "MondayOpening, MondayClosing, TuesdayOpening, TuesdayClosing, WednesdayOpening, "
 				+ "WednesdayClosing, ThursdayOpening, ThursdayClosing, FridayOpening, FridayClosing "
 				+ "FROM dentist d, openings o " + "WHERE d.id = o.id_dentist" + clauseWhere;
@@ -82,6 +86,7 @@ public class DentisteDAO {
 				new Day(result.getInt("FridayOpening"), result.getInt("FridayClosing")) };
 		
 		return new Dentiste(
+				result.getInt("id"),
 				result.getString("first_name"), result.getString("last_name"),
 				result.getString("speciality"), days,
 				result.getString("image"), result.getString("city"), 
