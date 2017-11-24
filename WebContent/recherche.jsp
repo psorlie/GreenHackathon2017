@@ -161,6 +161,11 @@
 								!</button>
 						</div>
 					</form>
+					<form class="form-horizontal" action="RechercheContacts"
+						method="get">
+						<button type="submit" class"btn btn-success offset-lg-1"> Anciennes recherches
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
