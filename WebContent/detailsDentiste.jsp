@@ -55,7 +55,7 @@
 							<div class="form-group">
 								<div class="form-horizontal">
 									<div class="form-group col-lg-12">
-										<h5>Horraires :</h5>
+										<h5>Horaires :</h5>
 									</div>
 									<div class="form-group col-lg-12">
 										<div class="form-group col-lg-5">
@@ -128,7 +128,7 @@
 												</form>
 
 
-												
+
 											</div>
 										</div>
 									</div>
