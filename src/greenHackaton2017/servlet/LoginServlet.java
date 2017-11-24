@@ -49,7 +49,8 @@ public class LoginServlet extends HttpServlet {
 				dispatcher = request.getRequestDispatcher("accueil.jsp");
 			}
 
-		} catch (SQLException e) {}
+		} catch (SQLException e) {
+		}
 
 		dispatcher.forward(request, response);
 

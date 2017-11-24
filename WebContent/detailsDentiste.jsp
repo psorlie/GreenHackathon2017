@@ -98,7 +98,7 @@
 											<label><%=dentiste.getCity()%></label>
 										</div>
 									</div>
-									<div class="form-group col-lg-12" style="margin-top:10px">
+									<div class="form-group col-lg-12" style="margin-top: 10px">
 										<h5>Contact :</h5>
 									</div>
 									<div class="form-group col-lg-12">
@@ -115,8 +115,19 @@
 											</div>
 											<div class="form-group col-lg-3 offset-lg-3"
 												style="margin-top: 10px">
-												<button type="button" class="btn btn-info"
-													data-toggle="collapse" data-target="#contacter">Contacter</button>
+												<form class="form-horizontal" action="ContacterServlet"
+													method="get">
+													<input type="hidden" name="idDentist"
+														value=<%=dentiste.getId()%> />
+													<button type="submit" class="btn btn-info"
+														data-toggle="collapse" data-target="#contacter">
+														Contacter</button>
+
+
+												</form>
+
+
+												
 											</div>
 										</div>
 									</div>
